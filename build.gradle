@@ -2,7 +2,7 @@ plugins {
     id "java"
     id "eclipse"
     id "idea"
-    id "jaci.openrio.gradle.GradleRIO" version "2017.1.0"
+    id "jaci.openrio.gradle.GradleRIO" version "2017.1.1"
 }
 
 frc {
@@ -12,7 +12,9 @@ frc {
 
 dependencies {
     compile wpilib()
-    compile talonSrx()
+
+    compile fileTree(dir: 'libs', include: '**/*.jar')
+    nativeLib fileTree(dir: 'libs', include: '**/*.so')
 }
 
 def robotManifest = {

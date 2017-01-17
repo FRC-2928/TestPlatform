@@ -11,12 +11,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivebase extends Subsystem {
 
+    private static final int MOTOR_DEVICE_NUMBER = 7;
+
     private final CANTalon motor;
 
     public Drivebase() {
         super();
-        // TODO: determine device number for the motor
-        motor = new CANTalon(0);
+        motor = new CANTalon(MOTOR_DEVICE_NUMBER);
     }
 
     public void drive(final double input) {
