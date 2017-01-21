@@ -12,17 +12,34 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Drivebase extends Subsystem {
 
     private static final int MOTOR_DEVICE_NUMBER = 7;
+    private static final int OTHER_MOTOR_DEVICE_NUMBER= 5;
 
     private final CANTalon motor;
+    //private final CANTalon motor2;
 
     public Drivebase() {
         super();
         motor = new CANTalon(MOTOR_DEVICE_NUMBER);
+        //motor2 = new CANTalon(OTHER_MOTOR_DEVICE_NUMBER);
+        motor.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+        motor.changeControlMode(CANTalon.TalonControlMode.Speed);
+        //motor2.changeControlMode(CANTalon.TalonControlMode.Follower);
+        //motor2.set(MOTOR_DEVICE_NUMBER);
+        motor.set(0);
     }
 
     public void drive(final double input) {
         motor.set(input);
     }
+
+    public double getEncVelocity() {
+        return this.motor.getEncVelocity();
+    }
+
+    public CANTalon getTalon(){
+        return motor;
+    }
+
 
     @Override
     protected void initDefaultCommand() {

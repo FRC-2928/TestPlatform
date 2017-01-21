@@ -22,7 +22,7 @@ def robotManifest = {
   attributes 'Robot-Class': frc.robotClass
 }
 
-jar {
+jar{
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     manifest robotManifest
 }
