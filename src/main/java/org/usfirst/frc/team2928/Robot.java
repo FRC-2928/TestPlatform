@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         oi = new OperatorInterface();
         drivebase = new Drivebase();
-        LiveWindow.addActuator("Drivebase", "drive", drivebase.getTalon());
+
 
     }
 
@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
-        new ConstantDrive(-0.8).start();
+        new ConstantDrive(.1).start();
     }
 
     @Override

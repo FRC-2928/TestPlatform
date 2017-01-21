@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2928.commands;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDInterface;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,17 +14,18 @@ public class ConstantDrive extends PIDCommand {
     private final double output;
 
     public ConstantDrive(final double output) {
-        super(1,.5,0);
+        super(.0001,0,0);
         requires(Robot.drivebase);
 
-        getPIDController().setAbsoluteTolerance(.01);
-        getPIDController().setOutputRange(-.5,.5);
-        setSetpoint(.5);
+        getPIDController().setAbsoluteTolerance(100);
+        getPIDController().setOutputRange(0,.7);
+
         this.output = output;
     }
 
     @Override
     protected void usePIDOutput(double output){
+       // output =.2;
         Robot.drivebase.drive(output);
     }
 
@@ -33,7 +36,9 @@ public class ConstantDrive extends PIDCommand {
 
     @Override
     protected void initialize() {
-        Robot.drivebase.drive(output);
+        //Robot.drivebase.drive(output);
+
+        setSetpoint(2000);
     }
 
     @Override
@@ -41,6 +46,7 @@ public class ConstantDrive extends PIDCommand {
         int counter = 0;
         if (counter % 10 == 0) {
             SmartDashboard.putNumber("Enc Velocity ", Robot.drivebase.getEncVelocity());
+
             counter++;
         }
         else {
@@ -50,6 +56,6 @@ public class ConstantDrive extends PIDCommand {
 
     @Override
     protected boolean isFinished() {
-        return getPIDController().onTarget();
+        return this.getPIDController().onTarget();
     }
 }
