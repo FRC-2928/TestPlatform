@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
-        new ConstantDrive(1200).start();
+        new ConstantDrive(13000).start();
     }
 
     @Override

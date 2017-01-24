@@ -50,7 +50,7 @@ public class Drivebase extends Subsystem {
 
         speedController = new PIDController(.00001,0.0, 0.0, m_source, this::setMotorOutput);
         speedController.setAbsoluteTolerance(100);
-        speedController.setOutputRange(0,.7);
+        speedController.setOutputRange(0,1);
         speedController.setSetpoint(0.0);
         speedController.enable();
     }
