@@ -62,6 +62,10 @@ public class Drivebase extends Subsystem {
     public void drive(final double input) {
         speedController.setSetpoint(input);
     }
+    public void drive(){
+
+        motor.set(Robot.oi.getDriveY());
+    }
 
     @Override
     protected void initDefaultCommand() {
